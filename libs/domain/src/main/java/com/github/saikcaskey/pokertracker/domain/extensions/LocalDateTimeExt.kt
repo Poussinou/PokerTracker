@@ -1,5 +1,6 @@
 package com.github.saikcaskey.pokertracker.domain.extensions
 
+import kotlinx.datetime.DateTimePeriod
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
@@ -13,4 +14,8 @@ fun LocalDateTime.toInstant(): Instant {
 
 fun LocalDateTime.plusMinutes(minutes: Int): Instant {
     return toInstant().plus(minutes, DateTimeUnit.MINUTE)
+}
+
+fun LocalDateTime.plusDays(days: Int): Instant {
+    return toInstant().plus(DateTimePeriod(days = days), TimeZone.currentSystemDefault())
 }
