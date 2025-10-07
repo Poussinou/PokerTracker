@@ -26,6 +26,7 @@ kotlinx-coroutines = "1.10.2"
 kotlinx-serialization = "1.9.0"
 runtime = "2.1.0"
 sqldelight = "2.1.0"
+vico = "2.2.0"
 
 [plugins]
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
@@ -58,6 +59,9 @@ material-kolor = { module = "com.materialkolor:material-kolor", version.ref = "m
 sqldelight-android-driver = { module = "app.cash.sqldelight:android-driver", version.ref = "androidDriver" }
 sqldelight-runtime = { module = "app.cash.sqldelight:runtime", version.ref = "runtime" }
 sqldelight-coroutines-extensions = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "coroutinesExtensions" }
+vico-core = { group = "com.patrykandpatrick.vico", name = "core", version.ref = "vico" }
+vico-compose-m3 = { group = "com.patrykandpatrick.vico", name = "compose-m3", version.ref = "vico" }
+vico-multiplatform-m3 = { group = "com.patrykandpatrick.vico", name = "multiplatform-m3", version.ref = "vico" }
 # Plugin libs that that are used in :build-logic:convention plugins
 android-gradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 jetbrains-kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }

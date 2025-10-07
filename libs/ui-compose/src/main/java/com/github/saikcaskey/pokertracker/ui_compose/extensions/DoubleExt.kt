@@ -7,8 +7,8 @@ import androidx.compose.ui.graphics.Color
 @Composable
 fun Double.toProfitColor(): Color {
     return when {
-        this > 0.0 -> MaterialTheme.colorScheme.primary
-        this < 0.0 -> MaterialTheme.colorScheme.error
-        else -> MaterialTheme.colorScheme.secondary
+        this > 0.0 -> MaterialTheme.colorScheme.secondary
+        this < 0.0 -> MaterialTheme.colorScheme.primary
+        else -> MaterialTheme.colorScheme.tertiary
     }
 }
