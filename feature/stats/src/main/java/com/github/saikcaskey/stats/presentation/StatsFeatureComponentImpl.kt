@@ -22,8 +22,30 @@ class StatsFeatureComponentImpl(
     dispatchers: CoroutineDispatchers,
 ) : StatsFeatureComponent, ComponentContext by componentContext {
 
-    override val uiState: StateFlow<StatsFeatureComponent.UiState>
-        get() = MutableStateFlow(StatsFeatureComponent.UiState())
+    private val componentScope = CoroutineScope(dispatchers.io)
+
+    private val balanceShort = statsRepository.getDailyBalanceForPeriod(DatePeriod(days = 7))
+        .map { it.mapBalanceWithDatePadding(periodLength = 7) }
+        .stateIn(componentScope, Eagerly, emptyMap())
+    private val balanceMedium = statsRepository.getDailyBalanceForPeriod(DatePeriod(days = 30))
+        .map { it.mapBalanceWithDatePadding(periodLength = 14) }
+        .stateIn(componentScope, Eagerly, emptyMap())
+    private val balanceLong = statsRepository.getDailyBalanceForPeriod(DatePeriod(days = 60))
+        .map { it.mapBalanceWithDatePadding(periodLength = 30) }
+        .stateIn(componentScope, Eagerly, emptyMap())
+
+    private val recentExpenses = expenseRepository.getRecent()
+
+    override val uiState: StateFlow<StatsFeatureComponent.UiState> =
+        combine(
+            balanceShort,
+            balanceMedium,
+            balanceLong,
+            recentExpenses,
+            StatsFeatureComponent::UiState
+        ).stateIn(componentScope, Eagerly, StatsFeatureComponent.UiState())
+}
+
 /**
  * Pads balances mapped to days of the year, to cover a continuous period, from today
  * TODO vico can maybe do this..?
