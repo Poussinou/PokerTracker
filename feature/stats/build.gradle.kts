@@ -10,6 +10,7 @@ dependencies {
     implementation(project(":libs:database"))
     implementation(project(":libs:domain"))
     implementation(project(":libs:ui-compose"))
+    implementation(project(":libs:ui-charts"))
 
     implementation(compose.ui)
     implementation(compose.foundation)
@@ -26,4 +27,5 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.datetime)
     implementation(libs.sqldelight.coroutines.extensions)
+    implementation(libs.vico.multiplatform.m3)
 }
