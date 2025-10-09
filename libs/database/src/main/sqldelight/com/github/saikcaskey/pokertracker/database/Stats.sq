@@ -1,0 +1,28 @@
+getDailyBalance:
+SELECT
+  SUM(
+    CASE
+    WHEN type IN ('CASH_OUT', 'DEAL') THEN amount
+    ELSE -amount
+    END
+  ) AS balance,
+  date AS date
+FROM Expense
+WHERE user_id = :userId
+  AND date(date) BETWEEN :startDate AND :endDate
+GROUP BY date
+ORDER BY date ASC;
+SELECT
+  SUM(
+    CASE
+    WHEN type IN ('CASH_OUT', 'DEAL') THEN amount
+    ELSE -amount
+    END
+  ) AS balance,
+  -- e.g., "2024-10"
+  strftime('%Y-%m', date) AS monthYearDate
+FROM Expense
+WHERE user_id = :userId
+  AND date(date) BETWEEN :startDate AND :endDate
+GROUP BY monthYearDate
+ORDER BY monthYearDate ASC;
