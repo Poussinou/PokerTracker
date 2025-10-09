@@ -1,20 +1,26 @@
 package com.github.saikcaskey.pokertracker.presentation
 
 import com.arkivanov.decompose.ComponentContext
-import com.arkivanov.decompose.router.pages.*
+import com.arkivanov.decompose.router.pages.ChildPages
+import com.arkivanov.decompose.router.pages.Pages
+import com.arkivanov.decompose.router.pages.PagesNavigation
+import com.arkivanov.decompose.router.pages.childPages
+import com.arkivanov.decompose.router.pages.select
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.decompose.value.subscribe
-import com.github.saikcaskey.pokertracker.dashboard.presentation.DashboardFeatureComponentImpl
+import com.github.saikcaskey.account.domain.repository.AccountSettingsRepository
+import com.github.saikcaskey.account.presentation.AccountFeatureComponentImpl
 import com.github.saikcaskey.database.di.PokerTrackerDatabaseProvider
+import com.github.saikcaskey.database.di.SampleDataSeederProvider
+import com.github.saikcaskey.pokertracker.dashboard.presentation.DashboardFeatureComponentImpl
 import com.github.saikcaskey.pokertracker.domain.CoroutineDispatchers
+import com.github.saikcaskey.pokertracker.domain.presentation.MainPagerPageComponent
 import com.github.saikcaskey.pokertracker.domain.repository.EventRepository
 import com.github.saikcaskey.pokertracker.domain.repository.ExpenseRepository
-import com.github.saikcaskey.pokertracker.domain.repository.VenueRepository
-import com.github.saikcaskey.account.domain.repository.AccountSettingsRepository
-import com.github.saikcaskey.pokertracker.planner.presentation.PlannerFeatureComponentImpl
-import com.github.saikcaskey.account.presentation.AccountFeatureComponentImpl
-import com.github.saikcaskey.pokertracker.domain.presentation.MainPagerPageComponent
+import com.github.saikcaskey.pokertracker.domain.repository.StatsRepository
 import com.github.saikcaskey.pokertracker.domain.repository.UserRepository
+import com.github.saikcaskey.pokertracker.domain.repository.VenueRepository
+import com.github.saikcaskey.pokertracker.planner.presentation.PlannerFeatureComponentImpl
 import com.github.saikcaskey.stats.presentation.StatsFeatureComponentImpl
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -42,6 +48,7 @@ class MainComponentImpl(
     private val venueRepository: VenueRepository,
     private val accountSettingsRepository: AccountSettingsRepository,
     private val userRepository: UserRepository,
+    private val statsRepository: StatsRepository,
     private val dispatchers: CoroutineDispatchers,
 ) : MainComponent, ComponentContext by componentContext {
 
@@ -71,6 +78,7 @@ class MainComponentImpl(
                 database = PokerTrackerDatabaseProvider.provide(),
                 accountSettingsRepository = accountSettingsRepository,
                 userRepository = userRepository,
+                seeder = SampleDataSeederProvider.provide(),
                 dispatchers = dispatchers,
             )
 
@@ -100,6 +108,9 @@ class MainComponentImpl(
 
             MainMenuPagerPageConfig.Stats -> StatsFeatureComponentImpl(
                 componentContext = childComponentContext,
+                statsRepository = statsRepository,
+                expenseRepository = expenseRepository,
+                dispatchers = dispatchers,
             )
         }
     }

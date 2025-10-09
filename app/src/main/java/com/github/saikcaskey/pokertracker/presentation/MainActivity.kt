@@ -10,7 +10,7 @@ import com.github.saikcaskey.stats.di.EventRepositoryProvider
 import com.github.saikcaskey.stats.di.ExpenseRepositoryProvider
 import com.github.saikcaskey.stats.di.VenueRepositoryProvider
 import com.github.saikcaskey.account.di.AccountSettingsRepositoryProvider
-import com.github.saikcaskey.pokertracker.domain.repository.UserRepository
+import com.github.saikcaskey.stats.di.StatsRepositoryProvider
 import com.github.saikcaskey.stats.di.UserRepositoryProvider
 
 class MainActivity : ComponentActivity() {
@@ -27,6 +27,7 @@ class MainActivity : ComponentActivity() {
             venueRepository = VenueRepositoryProvider.provide(),
             expenseRepository = ExpenseRepositoryProvider.provide(),
             accountSettingsRepository = AccountSettingsRepositoryProvider.provide(),
+            statsRepository = StatsRepositoryProvider.provide(),
             userRepository = UserRepositoryProvider.provide(),
         )
 

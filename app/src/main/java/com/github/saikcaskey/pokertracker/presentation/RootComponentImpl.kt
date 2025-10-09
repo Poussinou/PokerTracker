@@ -24,6 +24,7 @@ import com.github.saikcaskey.stats.presentation.ViewVenuesComponent
 import com.github.saikcaskey.pokertracker.domain.repository.EventRepository
 import com.github.saikcaskey.pokertracker.domain.repository.ExpenseRepository
 import com.github.saikcaskey.account.domain.repository.AccountSettingsRepository
+import com.github.saikcaskey.pokertracker.domain.repository.StatsRepository
 import com.github.saikcaskey.pokertracker.domain.repository.UserRepository
 import com.github.saikcaskey.pokertracker.domain.repository.VenueRepository
 import com.github.saikcaskey.stats.presentation.EventDetailComponentImpl
@@ -48,6 +49,7 @@ class RootComponentImpl(
     private val accountSettingsRepository: AccountSettingsRepository,
     private val userRepository: UserRepository,
     private val venueRepository: VenueRepository,
+    private val statsRepository: StatsRepository,
     private val dispatchers: CoroutineDispatchers,
 ) : RootComponent, ComponentContext by componentContext {
 
@@ -92,6 +94,7 @@ class RootComponentImpl(
             expenseRepository = expenseRepository,
             accountSettingsRepository = accountSettingsRepository,
             userRepository = userRepository,
+            statsRepository = statsRepository,
             onShowAllEvents = { navigator.push(Config.ViewEvents) },
             onShowAllVenues = { navigator.push(Config.ViewVenues) },
             onShowAllExpenses = { navigator.push(Config.ViewExpenses) },
