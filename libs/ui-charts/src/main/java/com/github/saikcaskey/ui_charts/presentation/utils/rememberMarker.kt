@@ -1,4 +1,4 @@
-package com.github.saikcaskey.ui_charts.demo.presentation.utils
+package com.github.saikcaskey.ui_charts.presentation.utils
 import android.text.Layout
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable

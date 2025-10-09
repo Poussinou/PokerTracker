@@ -8,8 +8,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.github.saikcaskey.ui_charts.demo.models.MultiSeriesLineChartData
-import com.github.saikcaskey.ui_charts.demo.presentation.utils.rememberHorizontalLine
-import com.github.saikcaskey.ui_charts.demo.presentation.utils.rememberMarker
+import com.github.saikcaskey.ui_charts.presentation.utils.rememberHorizontalLine
+import com.github.saikcaskey.ui_charts.presentation.utils.rememberMarker
 import com.patrykandpatrick.vico.compose.cartesian.CartesianChartHost
 import com.patrykandpatrick.vico.compose.cartesian.axis.rememberBottom
 import com.patrykandpatrick.vico.compose.cartesian.axis.rememberStart

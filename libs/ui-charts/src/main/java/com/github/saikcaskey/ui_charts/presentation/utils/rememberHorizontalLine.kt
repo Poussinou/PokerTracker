@@ -1,4 +1,4 @@
-package com.github.saikcaskey.ui_charts.demo.presentation.utils
+package com.github.saikcaskey.ui_charts.presentation.utils
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
