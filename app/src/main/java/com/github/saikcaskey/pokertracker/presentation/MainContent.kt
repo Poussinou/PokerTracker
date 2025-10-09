@@ -33,15 +33,16 @@ internal fun MainContent(component: MainComponent, modifier: Modifier = Modifier
             ChildPages(
                 pages = component.pages,
                 onPageSelected = component::selectPage,
-                scrollAnimation = PagesScrollAnimation.Default,
-            ) { idx, pageComponent ->
-                when (pageComponent) {
-                    is AccountFeatureComponent -> AccountFeatureContent(pageComponent)
-                    is PlannerFeatureComponent -> PlannerFeatureContent(pageComponent)
-                    is DashboardFeatureComponent -> DashboardFeatureContent(pageComponent)
-                    is StatsFeatureComponent -> StatsFeatureContent(pageComponent)
-                }
-            }
+                scrollAnimation = PagesScrollAnimation.Disabled,
+                pageContent = { idx, pageComponent ->
+                    when (pageComponent) {
+                        is AccountFeatureComponent -> AccountFeatureContent(pageComponent)
+                        is PlannerFeatureComponent -> PlannerFeatureContent(pageComponent)
+                        is DashboardFeatureComponent -> DashboardFeatureContent(pageComponent)
+                        is StatsFeatureComponent -> StatsFeatureContent(pageComponent)
+                    }
+                },
+            )
         }
     }
 }
