@@ -9,7 +9,6 @@ import com.github.saikcaskey.pokertracker.domain.util.nowAsLocalDateTime
 import kotlinx.datetime.DatePeriod
 import kotlinx.datetime.plus
 import java.util.UUID
-import kotlin.math.abs
 import kotlin.random.Random
 import kotlin.time.Instant
 
@@ -29,10 +28,6 @@ class SampleDataSeederImpl(
         Pair("5/10 NLHE Cash Game", "Mid-stakes cash game.")
     )
 
-
-    /**
-     * Seeds a fixed, predictable set of data: 3 Venues, 3 Events (one per venue), and associated expenses.
-     */
     override fun smokeTest(selectedUser: Long?) {
         fixedVenues.forEachIndexed { index, (venueName, description, address) ->
             val (eventName, eventDescription) = fixedEvents[index % fixedEvents.size]
@@ -47,16 +42,12 @@ class SampleDataSeederImpl(
                     eventName = eventName,
                     eventDescription = eventDescription,
                     baseDate = baseDate,
-                    // Use a slightly less random cash-out for smoketest
                     cashOutAmount = Random.nextDouble(100.0, 500.0)
                 )
             }
         }
     }
 
-    /**
-     * Seeds one session with a high cash-out (winning day).
-     */
     override fun goodDay(selectedUser: Long) {
         val baseDate = dateWithRandomOffset()
         val (venueName, description, address) = fixedVenues.random()
@@ -74,9 +65,6 @@ class SampleDataSeederImpl(
         )
     }
 
-    /**
-     * Seeds one session with a low cash-out (losing day).
-     */
     override fun badDay(selectedUser: Long) {
         val baseDate = dateWithRandomOffset()
         val (venueName, description, address) = fixedVenues.random()
