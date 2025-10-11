@@ -18,6 +18,12 @@ import com.github.saikcaskey.pokertracker.domain.presentation.MainPagerPageCompo
 import com.github.saikcaskey.pokertracker.domain.repository.EventRepository
 import com.github.saikcaskey.pokertracker.domain.repository.ExpenseRepository
 import com.github.saikcaskey.pokertracker.domain.repository.StatsRepository
+import com.github.saikcaskey.pokertracker.domain.repository.VenueRepository
+import com.github.saikcaskey.account.domain.repository.AccountSettingsRepository
+import com.github.saikcaskey.pokertracker.planner.presentation.PlannerFeatureComponentImpl
+import com.github.saikcaskey.account.presentation.AccountFeatureComponentImpl
+import com.github.saikcaskey.database.di.SampleDataSeederProvider
+import com.github.saikcaskey.pokertracker.domain.presentation.MainPagerPageComponent
 import com.github.saikcaskey.pokertracker.domain.repository.UserRepository
 import com.github.saikcaskey.pokertracker.domain.repository.VenueRepository
 import com.github.saikcaskey.pokertracker.planner.presentation.PlannerFeatureComponentImpl

@@ -8,9 +8,9 @@ import com.github.saikcaskey.pokertracker.domain.models.ExpenseType
 import com.github.saikcaskey.pokertracker.domain.util.nowAsLocalDateTime
 import kotlinx.datetime.DatePeriod
 import kotlinx.datetime.plus
-import java.util.UUID
 import kotlin.random.Random
 import kotlin.time.Instant
+import kotlin.uuid.Uuid
 
 class SampleDataSeederImpl(
     private val database: PokerTrackerDatabase,
@@ -61,7 +61,7 @@ class SampleDataSeederImpl(
             eventName = "$eventName - Big Win",
             eventDescription = "$eventDescription Player got lucky.",
             baseDate = baseDate,
-            cashOutAmount = Random.nextDouble(600.0, 1000.0)
+            cashOutAmount = Random.nextDouble(0.0, 10000.0)
         )
     }
 
@@ -78,12 +78,12 @@ class SampleDataSeederImpl(
             eventName = "$eventName - Big Loss",
             eventDescription = "$eventDescription Player ran terrible.",
             baseDate = baseDate,
-            cashOutAmount = Random.nextDouble(0.00, 50.0)
+            cashOutAmount = Random.nextDouble(-5000.0, 0.0)
         )
     }
 
     override fun user() {
-        val randomName = "User ${UUID.randomUUID().toString().take(6)}"
+        val randomName = "User ${Uuid.random().toString().take(6)}"
         database.userQueries.insert(randomName, nowAsLocalDateTime().toString())
         database.userQueries.lastInsertRowId().executeAsOne()
     }
@@ -224,8 +224,8 @@ private fun dateWithRandomOffset(): Instant {
 
 private fun ExpenseType.randomExpenseAmount(): Double {
     return when (this) {
-        ExpenseType.ADD_ON -> Random.nextDouble(50.0, 500.0)
-        ExpenseType.REBUY -> Random.nextDouble(200.0, 1000.0)
+        ExpenseType.ADD_ON -> Random.nextDouble(50.0, 200.0)
+        ExpenseType.REBUY -> Random.nextDouble(20.0, 200.0)
         ExpenseType.DRINKS -> Random.nextDouble(5.0, 100.0)
         ExpenseType.FINE -> if (Random.nextInt(9) > 7) {
             Random.nextDouble(60.0, 100.0)
