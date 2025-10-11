@@ -94,13 +94,10 @@ class SampleDataSeederImpl(
         )
     }
 
-    /**
-     * Inserts a new user with a random name and returns the user ID.
-     */
-    override fun user(): Long {
+    override fun user() {
         val randomName = "User ${UUID.randomUUID().toString().take(6)}"
         database.userQueries.insert(randomName, nowAsLocalDateTime().toString())
-        return database.userQueries.lastInsertRowId().executeAsOne()
+        database.userQueries.lastInsertRowId().executeAsOne()
     }
 
     /**
